@@ -40,6 +40,9 @@ const regexp = {
     reg_titleContent: /<title>([\S\s]*?)<\/title>/,
     reg_headerTitleContent: /<h1 class=\"header-title\">([\s\S]*?)<\/h1>/,
     reg_iframeContent: /<div class=\"iframe-page\">([\s\S]*?)<\/div>/,
+    // 匹配md.html内部的html{{newStr}}
+    reg_mdStr: /{{(.+?)}}/
+
 }
 module.exports = {
     port,

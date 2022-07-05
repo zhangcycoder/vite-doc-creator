@@ -42,8 +42,11 @@ function createIndexHtml(options) {
     newHtml = replaceHtml(reg_headerTitleContent, newHtml, options.title || title)
     newHtml = replaceHtml(reg_iframeContent, newHtml, createIframe(_htmlFiles[0], options.domain, options.port))
     // writeFileSync写入文件 ptah、content
-    console.log(newHtml)
-    writeFileSync(rootPath + '/index.html', newHtml)
+    writeFileSync(rootPath + '/index.html', newHtml, function (error) {
+        if (error) {
+            throw new Error('file  is  failed to write.', error)
+        }
+    })
 }
 module.exports = {
     createIndexHtml

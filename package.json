@@ -18,7 +18,10 @@
     },
     "homepage": "https://github.com/zhangcycoder/vite-doc-creator#readme",
     "dependencies": {
-        "highlight.js": "^11.5.1",
-        "marked": "^4.0.17"
+        "highlight.js": "^10.2.1",
+        "marked": "^1.2.0"
+    },
+    "devDependencies": {
+        "marked": "^1.2.0"
     }
 }
