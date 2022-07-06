@@ -1,5 +1,4 @@
 const { initFoldrs, initFiles, initWatchers } = require('./init')
-const { mdToHtml } = require('./compiler')
 class ViteDocCreator {
     constructor(options) {
         this.option = {
@@ -21,7 +20,6 @@ class ViteDocCreator {
         initFiles(this.option);
         // 初始化舰艇html与markdown文件及文件夹变化
         initWatchers(this.option)
-        mdToHtml('test.md')
     }
 }
 

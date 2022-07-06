@@ -20,7 +20,11 @@ function initFoldrs() {
 }
 
 function createFolder(path) {
-    // 同步创建文件夹
+    // mkdirSync 同步创建文件夹
+    /**
+     * param path 文件夹路径
+     * param callback 创建失败，错误信息抛出
+     */
     mkdirSync(path, function (error) {
         if (error) {
             throw new Error('Folder is failed to create', error)

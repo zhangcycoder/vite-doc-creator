@@ -17,7 +17,7 @@ const {
     }
 } = require('../config')
 // 创建index.html
-function createIndexHtml(options) {
+function createIndexHtml(options, outerFilename) {
     const _htmlFiles = readdirSync(htmlPath);
     // 如果外层html文件夹为空 将模版index.html赋值到外层根目录
     if (!_htmlFiles.length) {
@@ -33,14 +33,17 @@ function createIndexHtml(options) {
 
     let menuList = '';
     let newHtml = '';
+    let curIdx = outerFilename ? [].indexOf.call(_htmlFiles, outerFilename) : 0;
+
     // 遍历外层html文件做menuList
     _htmlFiles.map(function (filename, index) {
-        menuList += createMenuItem(filename, options.domain, options.port, !index ? true : false)
+        menuList += createMenuItem(filename, options.domain, options.port, index === curIdx ? true : false)
     })
+
     newHtml = replaceHtml(reg_ulConent, _indexHtmlStr, menuList)
     newHtml = replaceHtml(reg_titleContent, newHtml, options.title || title)
     newHtml = replaceHtml(reg_headerTitleContent, newHtml, options.title || title)
-    newHtml = replaceHtml(reg_iframeContent, newHtml, createIframe(_htmlFiles[0], options.domain, options.port))
+    newHtml = replaceHtml(reg_iframeContent, newHtml, createIframe(_htmlFiles[curIdx], options.domain, options.port))
     // writeFileSync写入文件 ptah、content
     writeFileSync(rootPath + '/index.html', newHtml, function (error) {
         if (error) {
@@ -48,6 +51,7 @@ function createIndexHtml(options) {
         }
     })
 }
+
 module.exports = {
     createIndexHtml
 }
